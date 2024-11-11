@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/services/get_all_products_service.dart';
 
-void main() {
+void main() async {
+  await GetAllProductsService().getAllProducts();
+
   runApp(const StoreApp());
 }
 
