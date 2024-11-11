@@ -1,15 +1,33 @@
+import 'dart:developer';
+
 import 'package:store_app/models/product_model.dart';
 import 'package:dio/dio.dart';
 
-class GetAllProductsService {
-  Future<List<ProductModel>> getAllProducts() async {
-    List<ProductModel> products = [];
-    Dio dio = Dio();
-    Response response = await dio.get('https://fakestoreapi.com/products');
-    for (var product in response.data) {
-      products.add(ProductModel.fromJson(product));
-    }
+import '../helper/constants.dart';
 
-    return products;
+class GetProductsService {
+  Future<List<ProductModel>> getAllProducts({String? categorieName}) async {
+    try {
+      List<ProductModel> products = [];
+      Dio dio = Dio();
+      Response response;
+      if (categorieName == null) {
+        response = await dio.get('${baseUrl}products');
+      } else {
+        response = await dio.get('${baseUrl}products/category/$categorieName');
+      }
+      if (response.statusCode == 200) {
+        for (var product in response.data) {
+          products.add(ProductModel.fromJson(product));
+        }
+        log("Products Here!");
+        return products;
+      } else {
+        throw Exception("Wrong Status Code: ${response.statusCode}");
+      }
+    } on Exception catch (e) {
+      log(e.toString());
+      return [];
+    }
   }
 }
