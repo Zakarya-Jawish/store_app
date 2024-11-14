@@ -8,10 +8,6 @@ class Api {
     dio.options.baseUrl = "https://fakestoreapi.com/";
     dio.options.connectTimeout = const Duration(seconds: 5);
     dio.options.receiveTimeout = const Duration(seconds: 5);
-    dio.options.headers = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    };
   }
   Future<dynamic> get({required String url}) async {
     try {
@@ -29,7 +25,14 @@ class Api {
 
   Future<dynamic> post({required dynamic body, String? token}) async {
     try {
-      log(body.toString());
+      dio.options.headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      };
+      if (token != null) {
+        dio.options.headers.addAll({'Authorization': token});
+      }
+
       Response response = await dio.post(
         'products',
         data: body,
