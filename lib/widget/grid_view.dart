@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/models/product_model.dart';
 import 'package:store_app/widget/product_card.dart';
 
 class ProductGridView extends StatelessWidget {
-  const ProductGridView({super.key});
-
+  ProductGridView({super.key, required this.products});
+  List<ProductModel> products = [];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,8 +17,10 @@ class ProductGridView extends StatelessWidget {
           mainAxisSpacing: 20,
           crossAxisSpacing: 5,
         ),
-        itemBuilder: (context, index) => const ProductCard(),
-        itemCount: 20,
+        itemBuilder: (context, index) => ProductCard(
+          product: products[index],
+        ),
+        itemCount: products.length,
       ),
     );
   }

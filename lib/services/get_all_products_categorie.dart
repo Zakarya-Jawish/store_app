@@ -5,8 +5,8 @@ import 'package:store_app/helper/constants.dart';
 
 import '../models/product_model.dart';
 
-class GetProductsService {
-  Future<List<ProductModel>> getAllProductsCategori(
+class GetProductsByCategoriService {
+  Future<List<ProductModel>> getProductsbyCategori(
       {required String categorieName}) async {
     List<ProductModel> products = [];
     List<dynamic> data =

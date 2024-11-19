@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({
-    super.key,
-  });
-
+  ProductCard({super.key, required this.product});
+  ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -32,18 +31,17 @@ class ProductCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'lable here',
-                    style: TextStyle(
-                      fontSize: 15,
-                    ),
+                  Text(
+                    product.title,
+                    style: const TextStyle(
+                        fontSize: 15, overflow: TextOverflow.ellipsis),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        r'$999',
-                        style: TextStyle(
+                      Text(
+                        '\$${product.price}',
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -64,12 +62,12 @@ class ProductCard extends StatelessWidget {
         ),
         Positioned(
             // bottom: 60,
-            top: -60,
-            left: 13,
+            top: -65,
+            right: 30,
             child: Image.network(
-              'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+              product.image,
               height: 120,
-              width: 200,
+              width: 100,
             )),
       ],
     );
