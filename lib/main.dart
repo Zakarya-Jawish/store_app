@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/views/update_product_view.dart';
 
 import 'views/home_view.dart';
 
@@ -15,8 +16,9 @@ class StoreApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         HomeView.id: (context) => const HomeView(),
+        UpdateProductView.id: (context) => const UpdateProductView(),
       },
-      initialRoute: HomeView.id,
+      initialRoute: UpdateProductView.id,
     );
   }
 }

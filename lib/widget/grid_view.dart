@@ -3,8 +3,8 @@ import 'package:store_app/models/product_model.dart';
 import 'package:store_app/widget/product_card.dart';
 
 class ProductGridView extends StatelessWidget {
-  ProductGridView({super.key, required this.products});
-  List<ProductModel> products = [];
+  const ProductGridView({super.key, required this.products});
+  final List<ProductModel> products;
   @override
   Widget build(BuildContext context) {
     return Padding(
