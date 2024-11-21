@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../helper/api.dart';
 
 class UpdateProductService {
@@ -11,15 +13,15 @@ class UpdateProductService {
   }) async {
     Map<String, dynamic>? newProduct = await Api().put(
       body: {
-        'id': id,
         "title": title,
         "price": price,
         "description": description,
         "image": image,
-        "category": category,
       },
-      id: id,
+      id: id.toString(),
     );
+    log('product updated');
+    print(newProduct);
     return newProduct;
   }
 }

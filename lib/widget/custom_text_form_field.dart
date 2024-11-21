@@ -8,12 +8,14 @@ class CustomTextFormField extends StatelessWidget {
     this.validator,
     this.isPassword = false,
     this.colorHintText = Colors.grey,
+    required this.controller,
   });
   final String? hintText;
   final Function(String)? onChanged;
   final bool Function(String)? validator;
   final bool isPassword;
   final Color colorHintText;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -23,6 +25,7 @@ class CustomTextFormField extends StatelessWidget {
       },
       onChanged: onChanged,
       obscureText: isPassword,
+      controller: controller,
       // style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: hintText,

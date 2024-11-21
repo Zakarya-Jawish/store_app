@@ -9,7 +9,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, UpdateProductView.id);
+        Navigator.pushNamed(context, UpdateProductView.id, arguments: product);
       },
       child: Stack(
         clipBehavior: Clip.none,
