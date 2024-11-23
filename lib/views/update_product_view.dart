@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:store_app/widget/custom_button.dart';
 import 'package:store_app/widget/custom_text_form_field.dart';
+import 'package:store_app/widget/show_snack_bar.dart';
 
 import '../models/product_model.dart';
 import '../services/update_product_service.dart';
 
 class UpdateProductView extends StatefulWidget {
-  UpdateProductView({
+  const UpdateProductView({
     super.key,
   });
   static const String id = 'updateProduct';
@@ -28,16 +29,25 @@ class _UpdateProductViewState extends State<UpdateProductView> {
   GlobalKey<FormState> formKey = GlobalKey();
 
   bool isLoading = false;
-
+  late ProductModel product;
   @override
-  Widget build(BuildContext context) {
-    print(isLoading);
-    ProductModel product =
-        ModalRoute.of(context)!.settings.arguments as ProductModel;
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      product = ModalRoute.of(context)!.settings.arguments as ProductModel;
+      _initializeControllers(product);
+    });
+  }
+
+  void _initializeControllers(ProductModel product) {
     titleController.text = product.title;
     priceController.text = product.price.toString();
     descController.text = product.description;
     imageController.text = product.image;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
@@ -92,10 +102,10 @@ class _UpdateProductViewState extends State<UpdateProductView> {
                         isLoading = true;
                       });
                       await updateProduct(product);
-
                       setState(() {
                         isLoading = false;
                       });
+                      showSnak(context, 'Updated Success', Colors.green);
                     }
                   },
                 ),
@@ -108,7 +118,7 @@ class _UpdateProductViewState extends State<UpdateProductView> {
   }
 
   Future<void> updateProduct(ProductModel product) async {
-    UpdateProductService().updateProduct(
+    await UpdateProductService().updateProduct(
       id: product.id,
       category: product.category,
       title: titleController.text,
