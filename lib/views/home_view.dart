@@ -18,6 +18,7 @@ class HomeView extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
+          leading: const Icon(Icons.search),
           actions: [
             IconButton(
               icon: const Icon(FontAwesomeIcons.cartPlus),
