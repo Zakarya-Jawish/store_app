@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
           ],
           bottom: customTabBar(),
         ),
-        body: const TabBarView(children: [
+        body: TabBarView(children: [
           DisblayProduct(),
           DisblayProduct(categoryNamw: 'electronics'),
           DisblayProduct(categoryNamw: 'jewelery'),
