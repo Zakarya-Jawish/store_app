@@ -16,7 +16,7 @@ class DisblayProduct extends StatelessWidget {
   final String? categoryNamw;
 
   var future;
-  static final Map<String?, List<ProductModel>> _categoryCache = {};
+  final Map<String?, List<ProductModel>> _categoryCache = {};
 
   @override
   Widget build(BuildContext context) {

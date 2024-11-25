@@ -39,6 +39,7 @@ dependencies:
   dio: ^5.7.0
   font_awesome_flutter: ^10.8.0
   modal_progress_hud_nsn: ^0.5.1
+  redacted: ^1.0.12
 
 
 dev_dependencies:
