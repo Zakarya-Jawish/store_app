@@ -24,14 +24,3 @@ A Flutter-based e-commerce application that allows users to manage and interact 
 - Dio package for HTTP requests
 - FutureBuilder for async operations
 
-## Getting Started
-
-### Prerequisites
-
-- Flutter SDK
-- Dart SDK
-- An IDE (VS Code, Android Studio, etc.)
-
-### Installation
-
-1. Clone the repository
